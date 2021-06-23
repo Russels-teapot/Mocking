@@ -1,19 +1,20 @@
-import {fetchData} from "../http.js";
-import {getLevel} from "../app.js";
+import { fetchData } from '../http';
+import { getLevel } from '../app';
 
-jest.mock('../http')
+jest.mock('../http');
 
-test('get level', ()=>{
-    const response = {status:'ok', level:2}
-    fetchData.mockReturnValue(response);
-    getLevel(1);
-    expect(getLevel).toReturn(`Ваш текущий уровень: ${response.level}`)
-})
+beforeEach(() => {
+  jest.resetAllMocks();
+});
 
-test('get level', ()=>{
-    const response = {}
-    fetchData.mockReturnValue(response);
-    getLevel(1);
-    //expect(getLevel).toBeCalledWith(`https://server/user/1`)
-    expect(getLevel).toReturn(`Информация об уровне временно недоступна`)
-})
+test('fetch data', () => {
+  const response = { status: 'ok', level: 2 };
+  fetchData.mockReturnValue(response);
+  getLevel(1);
+  expect(fetchData).toBeCalledWith('https://server/user/1');
+});
+
+// test('get level', () => {
+//   getLevel.mockReturnValue({});
+//   expect(getLevel).toReturn();
+// });
