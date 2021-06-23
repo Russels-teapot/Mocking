@@ -7,14 +7,16 @@ beforeEach(() => {
   jest.resetAllMocks();
 });
 
-test('fetch data', () => {
+test('get level', () => {
   const response = { status: 'ok', level: 2 };
   fetchData.mockReturnValue(response);
   getLevel(1);
   expect(fetchData).toBeCalledWith('https://server/user/1');
 });
 
-// test('get level', () => {
-//   getLevel.mockReturnValue({});
-//   expect(getLevel).toReturn();
-// });
+test('get level', () => {
+  const response = {};
+  fetchData.mockReturnValue(response);
+  getLevel(1);
+  expect(fetchData).toBeCalledWith('https://server/user/1');
+});
